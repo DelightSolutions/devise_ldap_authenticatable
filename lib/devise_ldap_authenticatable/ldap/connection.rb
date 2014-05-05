@@ -68,8 +68,7 @@ module Devise
       end
 
       def authenticate!
-        @ldap.auth(dn, @password)
-        @ldap.bind
+        @ldap.bind(:method => :simple, :username => dn, :password => @password)
       end
 
       def authenticated?
