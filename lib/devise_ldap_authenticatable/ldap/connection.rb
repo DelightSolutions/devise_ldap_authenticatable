@@ -68,6 +68,9 @@ module Devise
       end
 
       def authenticate!
+        unless @login.end_with?('@hid.hu')
+          @login = "#{@login}@hid.hu"
+        end
         @ldap.bind(:method => :simple, :username => @login, :password => @password)
       end
 
