@@ -24,7 +24,12 @@ module Devise
 
         @ldap.auth ldap_config["admin_user"], ldap_config["admin_password"] if params[:admin]
 
-        @login = params[:login]
+        unless params[:login].end_with?('@hid.hu')
+          @login = "#{params[:login]}@hid.hu"
+        else
+          @login = params[:login]
+        end
+        
         @password = params[:password]
         @new_password = params[:new_password]
       end
